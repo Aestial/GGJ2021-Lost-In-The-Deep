@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -21,5 +22,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    internal void Awake()
+    {
+        //throw new NotImplementedException();
     }
 }
