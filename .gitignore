@@ -44,3 +44,7 @@ sysinfo.txt
 # MacOS meta files
 *.icloud
 .DS_Store
+
+# Corgi Engine 
+Assets/MMData
+Assets/MMData.meta
