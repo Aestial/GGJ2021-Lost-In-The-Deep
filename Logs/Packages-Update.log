@@ -59,3 +59,12 @@ The following packages were added:
   com.unity.analytics@3.3.5
   com.unity.purchasing@2.1.0
   com.unity.xr.legacyinputhelpers@2.1.4
+
+=== Sun Jan 17 07:58:24 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.cinemachine@2.7.1
+  com.unity.postprocessing@2.3.0
