@@ -250,6 +250,17 @@ namespace MoreMountains.CorgiEngine
                 },
                 {
                     ""name"": """",
+                    ""id"": ""26a19f4a-cc92-44a1-a4d3-77c21e2df12f"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PrimaryMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8923c29f-eb06-45a4-9c25-5ed809d8fea2"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Press(behavior=2)"",
@@ -263,6 +274,17 @@ namespace MoreMountains.CorgiEngine
                     ""name"": """",
                     ""id"": ""f7f8488a-fd5a-4098-8088-d75677e01b98"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4764ad8-ce21-40ae-8a49-183dfee24006"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button2"",
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -296,6 +318,17 @@ namespace MoreMountains.CorgiEngine
                     ""name"": """",
                     ""id"": ""d6b36ab1-5730-4ee6-934d-0da3fd9ad3c7"",
                     ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18a8c26e-077e-4b68-93b0-2583f608e392"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button4"",
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -340,6 +373,17 @@ namespace MoreMountains.CorgiEngine
                     ""name"": """",
                     ""id"": ""f112453b-6f03-459b-a23e-70f29feb18bf"",
                     ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2042d8a9-b6c0-4b1e-a61a-eb84feb91087"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button8"",
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -558,6 +602,17 @@ namespace MoreMountains.CorgiEngine
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7ab72a76-62c4-48d1-b3c3-92d20dcbd65d"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/trigger"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Jetpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a65a3042-eb6b-4d3e-b84e-aff7e4adb6b2"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": ""Press(behavior=2)"",
@@ -624,6 +679,17 @@ namespace MoreMountains.CorgiEngine
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5b7eadd6-667e-4d23-8ef4-d858fa7ab108"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button6"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""934fca02-1df3-4f28-8734-fd87e09e6ccc"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": ""Press(behavior=2)"",
@@ -641,6 +707,28 @@ namespace MoreMountains.CorgiEngine
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Push"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60bf4551-7f95-4f04-adf2-1273200773c8"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button2"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Swim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9e6fe16-947c-4add-afe3-9e5ecbc9964c"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button2"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Glide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
