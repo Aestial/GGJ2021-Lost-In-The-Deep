@@ -15,7 +15,7 @@ public class PlayerInputAim2D : MonoBehaviour
     {
         this.x = x;
         this.y = y;
-        Debug.Log($"Player Aim 2D direction input: {x} {y}");
+        // Debug.Log($"Player Aim 2D direction input: {x} {y}");
     }
     void Update()
     {        
