@@ -11,7 +11,7 @@ public class LineDrawAnimated : MonoBehaviour
 
     bool hasTarget = false;
     bool hasEndedShot = false;
-    bool hasEndedReload = false;
+    // bool hasEndedReload = false;
     Vector3 target = Vector3.zero;
     Vector3 start = Vector3.zero;
 

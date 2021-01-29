@@ -42,9 +42,9 @@ public class PlayerInputTargetPull: MonoBehaviour
     [SerializeField]
     private float thrust = 50.0f;
     
-    [Header("Debug")]
-    [SerializeField]
-    float failRayLength = 10.0f;
+    // [Header("Debug")]
+    // [SerializeField]
+    // float failRayLength = 10.0f;
 
     public string state;
 
