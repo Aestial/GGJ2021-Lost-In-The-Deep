@@ -15,6 +15,8 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private MoveInputEvent OnMovePerformed = default;
     [SerializeField]
+    private FireInputEvent OnFireStarted = default;
+    [SerializeField]
     private FireInputEvent OnFirePerfomed = default;
     [SerializeField]
     private FireInputEvent OnFireCanceled = default;
@@ -29,24 +31,43 @@ public class InputController : MonoBehaviour
     private void OnEnable() 
     {
         controls.Player.Enable();
-        
+        // Move action
         controls.Player.Move.performed += OnMovePerformedHandler;
         controls.Player.Move.canceled += OnMovePerformedHandler;
-
+        // Fire action
+        controls.Player.Fire.started += OnFireStartedHandler;
         controls.Player.Fire.performed += OnFirePerformedHandler;
         controls.Player.Fire.canceled += OnFireCanceledHandler;
+    }
+
+    private void OnDisable() 
+    {
+        controls.Player.Disable();
+        // Move action
+        controls.Player.Move.performed -= OnMovePerformedHandler;
+        controls.Player.Move.canceled -= OnMovePerformedHandler;
+        // Fire action
+        controls.Player.Fire.started -= OnFireStartedHandler;
+        controls.Player.Fire.performed -= OnFirePerformedHandler;
+        controls.Player.Fire.canceled -= OnFireCanceledHandler;
+    }
+
+    private void OnFireStartedHandler (InputAction.CallbackContext context)
+    {
+        OnFireStarted.Invoke();
+        // Debug.Log($"Fire Input started");
     }
 
     private void OnFirePerformedHandler (InputAction.CallbackContext context)
     {
         OnFirePerfomed.Invoke();
-        Debug.Log($"Fire Input performed");
+        // Debug.Log($"Fire Input performed");
     }
 
     private void OnFireCanceledHandler (InputAction.CallbackContext context)
     {
         OnFireCanceled.Invoke();
-        Debug.Log($"Fire Input canceled");
+        // Debug.Log($"Fire Input canceled");
     }
 
     private void OnMovePerformedHandler (InputAction.CallbackContext context)
