@@ -2,16 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-
-[Serializable]
-public class PositionEvent : UnityEvent<Vector3> {}
-[Serializable]
-public class StringEvent : UnityEvent<string> {}
-[Serializable]
-public class FloatEvent : UnityEvent<float> {}
-[Serializable]
-public class BoolEvent : UnityEvent<bool> {}
 
 public class PlayerInputTargetPull: MonoBehaviour
 {   
@@ -22,90 +12,101 @@ public class PlayerInputTargetPull: MonoBehaviour
     [SerializeField]
     float reloadDelay = 1.0f;
 
+    [Header("Events")]
     [SerializeField]
-    private PositionEvent OnTargetShot = default;
+    private Vector3Event OnTargetShot = default;
     [SerializeField]
-    private PositionEvent OnTargetAttached = default;
+    private Vector3Event OnTargetAttached = default;
     [SerializeField]
-    private PositionEvent OnTargetDeattached = default;
+    private Vector3Event OnTargetDeattached = default;
+    [SerializeField]
+    private Vector3Event OnKeepAttached = default;
     [SerializeField]
     private FloatEvent OnShootingProgress = default;
     [SerializeField]
     private FloatEvent OnReloadingProgress = default;
     [SerializeField]
-    private BoolEvent OnReachChanged = default;
-    [SerializeField]
     private StringEvent OnStateChanged = default;
-
-    [SerializeField]
-    private Rigidbody rigidbody = default;
-    [SerializeField]
-    private float thrust = 50.0f;
-    
-    // [Header("Debug")]
     // [SerializeField]
-    // float failRayLength = 10.0f;
+    // private BoolEvent OnReachChanged = default;
+    
+    [Header("Debug")]
+    [SerializeField]
+    bool showDebugRays = false;
+    [SerializeField]
+    float failRayLength = 10.0f;
 
+    [Header("Debug Inspector")]
     public string state;
-
     public bool canReach = false;
-    public float shootTimer = 0.0f;
-    public bool isAnchored = false;
+    public bool isLoaded = true;
+    public bool isAttached = false;
     public Vector3 anchor;
 
     RaycastHit hit;
-
-    public bool isLoaded = true;
+    float shootTimer = 0.0f;
     float loadingTimer = 0.0f;
-
+    
     public void OnFireInputStarted()
     {
-        Debug.Log($"Ray Shoot: fire started!");
-        if (!isAnchored)
-        {
-            ShootAtTarget(hit);
-        }            
+        // Debug.Log($"Ray Shoot: fire started!");
+        ShootAtTarget(hit);
     }
+
     public void OnFireInputPerformed()
     {
         // Debug.Log($"Ray Shoot: fire performed!");
     }
+
     public void OnFireInputCanceled()
     {
-        Debug.Log($"Ray Shoot: fire canceled!");
-        StopAllCoroutines();
+        // Debug.Log($"Ray Shoot: fire canceled!");
         DeattachTarget(transform.position);
     }
      
     private void ShootAtTarget(RaycastHit hit)
     {        
-        if (canReach && isLoaded)
+        if (canReach && isLoaded && !isAttached)
         {
-            anchor = hit.point;
-            OnTargetShot.Invoke(anchor); 
-            shootTimer = shootDelay;
-            StartCoroutine(AttachTarget(anchor));
+            anchor = hit.point;     
+            StartCoroutine(AttachTarget(anchor));            
+            OnTargetShot.Invoke(anchor);          
+            shootTimer = shootDelay;        
         }                
     }
 
-    IEnumerator AttachTarget(Vector3 target) 
-    {        
-        yield return new WaitForSeconds(shootDelay);
-        isAnchored = true;
-        OnTargetAttached.Invoke(target);
+    private IEnumerator AttachTarget(Vector3 target) 
+    {
+        if (! isAttached)
+        {
+            yield return new WaitForSeconds(shootDelay);
+            isAttached = true;
+            OnTargetAttached.Invoke(target);
+        }        
     }
 
-    public void DeattachTarget(Vector3 target)
+    private void DeattachTarget(Vector3 target)
     {
-        if (isAnchored)
+        StopAllCoroutines();
+        if (isAttached)
+        {
+            isAttached = false;
+            OnTargetDeattached.Invoke(target);
             loadingTimer = reloadDelay;
-        isAnchored = false;
-        
-        OnTargetDeattached.Invoke(target);
+        }
     }
 
     private void Update() 
     {
+        // Update shoot reach timer
+        if (shootTimer > 0.0f)
+        {
+            shootTimer -= Time.deltaTime;
+            float progress = 1f - shootTimer / shootDelay;
+            // Debug.Log($"Ray Shoot progress: {progress}");
+            OnShootingProgress.Invoke(progress);
+        }        
+        // Update reload timer
         if (loadingTimer > 0.0f)
         {
             loadingTimer -= Time.deltaTime;
@@ -116,59 +117,50 @@ public class PlayerInputTargetPull: MonoBehaviour
         } else {
             isLoaded = true;
         }
-
-        if (shootTimer > 0.0f)
-        {
-            shootTimer -= Time.deltaTime;
-            float progress = 1f - shootTimer / shootDelay;
-            // Debug.Log($"Ray Shoot progress: {progress}");
-            OnShootingProgress.Invoke(progress);
-        }
+        
     }
 
     private void FixedUpdate() 
     {
+        // ACTUAL ATTACHMENT
+        if (isAttached)
+        {
+            OnKeepAttached.Invoke(anchor);
+        }
+        // REACH CALCULATION
         // Bit shift the index of the layer (8) to get a bit mask
-        int layerMask = 1 << 8;
-        // This would cast rays only against colliders in layer 8.
+        int layerMask = 1 << 8; // This would cast rays only against colliders in layer 8. (Level)
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         // layerMask = ~layerMask;
-
-        // Does the ray intersect any objects excluding the player layer
+        // Does the ray intersect any objects in the 8 layer (Level)
         canReach = Physics.Raycast(transform.position, transform.right, out hit, rayReach, layerMask);
         // React with event
-        OnReachChanged.Invoke(canReach);
-        // React with debug Rays
-        // if (canReach) {
-        //     Debug.Log("Did Hit");
-        //     Color rayColor = isLoaded ? Color.green : Color.yellow;
-        //     Debug.DrawRay(transform.position, transform.right * hit.distance, rayColor);
-        // } else {
-        //     Debug.Log("Did Not Hit");
-        //     Color rayColor = isLoaded ? Color.magenta : Color.red;
-        //     Debug.DrawRay(transform.position, transform.right * failRayLength, rayColor);
-        // }
+        // OnReachChanged.Invoke(canReach);
+        
+        // SET STATE
         if (canReach && isLoaded)
             state = "ready";
         else if (canReach)
             state = "loading";
         else if (isLoaded)
             state = "unreach";
-        // else 
-        //     state = "";
 
+        // React with event
         OnStateChanged.Invoke(state);
-        // React with force
-        if (isAnchored)
-        {
-            MoveWithForce(anchor);
+        // React with debug Rays
+        if (showDebugRays)
+            DrawDebugRays();
+    }
+    private void DrawDebugRays()
+    {
+        if (canReach) {
+            Debug.Log("Did Hit");
+            Color rayColor = isLoaded ? Color.green : Color.yellow;
+            Debug.DrawRay(transform.position, transform.right * hit.distance, rayColor);
+        } else {
+            Debug.Log("Did Not Hit");
+            Color rayColor = isLoaded ? Color.magenta : Color.red;
+            Debug.DrawRay(transform.position, transform.right * failRayLength, rayColor);
         }
     }
-    public void MoveWithForce(Vector3 anchor) 
-    {
-        Vector3 targetDirection = anchor - transform.position;
-        targetDirection.Normalize();
-        rigidbody.AddForceAtPosition(targetDirection * thrust, transform.position);        
-    }
-
 }
