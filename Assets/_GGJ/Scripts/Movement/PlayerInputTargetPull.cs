@@ -168,7 +168,7 @@ public class PlayerInputTargetPull: MonoBehaviour
     {
         Vector3 targetDirection = anchor - transform.position;
         targetDirection.Normalize();
-        rigidbody.AddForce(targetDirection * thrust);        
+        rigidbody.AddForceAtPosition(targetDirection * thrust, transform.position);        
     }
 
 }
