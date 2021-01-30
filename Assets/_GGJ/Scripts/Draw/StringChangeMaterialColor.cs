@@ -30,7 +30,9 @@ public class StringChangeMaterialColor : MonoBehaviour
             {
                 Color c = colors[i].color;
                 renderer.material.SetColor("_Color", c);
-            }            
+                return;
+            }  
         }
+        Debug.LogError($"Change Material Color: string color not found.");
     }
 }
