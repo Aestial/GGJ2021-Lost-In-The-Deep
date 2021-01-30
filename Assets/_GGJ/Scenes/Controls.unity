@@ -2195,9 +2195,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnReachChanged:
-    m_PersistentCalls:
-      m_Calls: []
   OnStateChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2213,8 +2210,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnReachChanged:
+    m_PersistentCalls:
+      m_Calls: []
   rigidbody: {fileID: 1797694207}
   thrust: 100
+  showDebugRays: 0
+  failRayLength: 10
   state: 
   canReach: 0
   shootTimer: 0
@@ -2234,8 +2236,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
-  direction: {x: 0, y: 0, z: 0}
+  inputType: 0
+  invert: 1
   angle: 0
+  showDebugRays: 1
+  rayLength: 10
 --- !u!1 &1490096698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,8 +2936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621a099bf359a467f91aa12afa095435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  moveType: 0
   thrust: 3
+  speed: 2
 --- !u!54 &1797694207
 Rigidbody:
   m_ObjectHideFlags: 0
