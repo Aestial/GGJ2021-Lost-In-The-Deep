@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemSave : MonoBehaviour
 {
     [SerializeField]
-    ItemObject itemObject;
+    ItemObject itemObject = default;
 
     Inventory inventory;
 

@@ -13,9 +13,9 @@ public class PlayerInputAim2D : MonoBehaviour
     [SerializeField] 
     float speed = 1.0f;
     [SerializeField]
-    InputType inputType;
+    InputType inputType = default;
     [SerializeField]
-    bool invert;
+    bool invert = default;
     
     [Header("Debug Inspector")]
     public float angle = 0.0f;
