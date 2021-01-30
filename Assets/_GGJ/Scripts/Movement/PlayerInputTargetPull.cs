@@ -110,7 +110,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         {
             loadingTimer -= Time.deltaTime;
             float progress = 1f - loadingTimer / reloadDelay;
-            Debug.Log($"Ray Loading progress: {progress}");
+            // Debug.Log($"Ray Loading progress: {progress}");
             OnReloadingProgress.Invoke(progress);
             isLoaded = false;
         } else {
@@ -121,7 +121,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         {
             shootTimer -= Time.deltaTime;
             float progress = 1f - shootTimer / shootDelay;
-            Debug.Log($"Ray Shoot progress: {progress}");
+            // Debug.Log($"Ray Shoot progress: {progress}");
             OnShootingProgress.Invoke(progress);
         }
     }
