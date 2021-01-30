@@ -47,7 +47,7 @@ public class PlayerInputMovement : MonoBehaviour
                 MoveTransform();
                 break;
             case MovementType.AddForce:
-            defaul:
+            default:
                 AddForce();
                 break;   
         }
