@@ -1363,7 +1363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063332482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 0.5, z: -10}
+  m_LocalPosition: {x: -15.05, y: 2.31, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 536624566}
@@ -1560,7 +1560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118122632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 0.5, z: -10}
+  m_LocalPosition: {x: -15.05, y: 2.31, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 115138118}
@@ -2165,6 +2165,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnKeepAttached:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1797694208}
+        m_TargetAssemblyTypeName: RigidbodyAddForce, Assembly-CSharp
+        m_MethodName: AddForceTowardsPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnShootingProgress:
     m_PersistentCalls:
       m_Calls:
@@ -2195,9 +2210,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnReachChanged:
-    m_PersistentCalls:
-      m_Calls: []
   OnStateChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2213,14 +2225,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  rigidbody: {fileID: 1797694207}
-  thrust: 100
+  showDebugRays: 1
+  failRayLength: 10
   state: 
   canReach: 0
-  shootTimer: 0
-  isAnchored: 0
-  anchor: {x: 0, y: 0, z: 0}
   isLoaded: 1
+  isAttached: 0
+  anchor: {x: 0, y: 0, z: 0}
 --- !u!114 &1456560170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2234,8 +2245,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
-  direction: {x: 0, y: 0, z: 0}
+  inputType: 0
+  invert: 1
   angle: 0
+  showDebugRays: 0
+  rayLength: 10
 --- !u!1 &1490096698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2908,7 @@ GameObject:
   - component: {fileID: 1797694205}
   - component: {fileID: 1797694206}
   - component: {fileID: 1797694207}
+  - component: {fileID: 1797694208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2909,7 +2924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797694204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 0.5, z: 0}
+  m_LocalPosition: {x: -15.05, y: 2.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312497265}
@@ -2931,8 +2946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621a099bf359a467f91aa12afa095435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  moveType: 0
   thrust: 3
+  speed: 2
 --- !u!54 &1797694207
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2949,6 +2965,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
+--- !u!114 &1797694208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797694204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33d62be370964a47bd8250d042b3572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: 1797694207}
+  thrust: 75
 --- !u!1 &1935627211
 GameObject:
   m_ObjectHideFlags: 0

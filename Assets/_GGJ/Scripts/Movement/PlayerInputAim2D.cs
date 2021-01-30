@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class PlayerInputAim2D : MonoBehaviour
 {    
+    public enum InputType
+    {
+        OneAxis,
+        TwoAxis,
+    }
+
     [SerializeField] 
     float speed = 1.0f;
+    [SerializeField]
+    InputType inputType = default;
+    [SerializeField]
+    bool invert = default;
     
-    public Vector3 direction;
+    [Header("Debug Inspector")]
     public float angle = 0.0f;
+
     float x, y;
+
+    [Header("Debug")]
+    [SerializeField]
+    bool showDebugRays = false;
+    [SerializeField]
+    float rayLength = 10.0f;
 
     public void OnMoveInput(float x, float y) 
     {
@@ -21,27 +38,45 @@ public class PlayerInputAim2D : MonoBehaviour
     {        
         float singleStep = speed * Time.deltaTime;
         // Set angle
-        // angle = RotateAngleTwoAxis(singleStep);
-        angle += IncrementAngleOneAxis(singleStep);
+        switch (inputType) {
+            case InputType.OneAxis:            
+                angle += IncrementAngle1Axis(singleStep);
+                break;
+            case InputType.TwoAxis:
+            default:
+                angle = RotateAngle2Axis(singleStep); 
+                break;           
+        }
         // Debug.Log($"Angle value: {angle}");
         // React with object
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        // React with debug rays
-        // float rayLength = 5.0f;
-        // Debug.DrawRay(transform.position, targetDirection * rayLength, Color.white);
-        // Debug.DrawRay(transform.position, direction * rayLength, Color.yellow);
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);        
     }
 
-    float IncrementAngleOneAxis(float step)
+    float IncrementAngle1Axis(float step)
     {        
-        return step * -x;
+        // Input direction
+        float direction = x;
+        // Is inverted
+        direction *= invert ? -1 : 1;
+        // Debug
+        if (showDebugRays)
+            Debug.DrawRay(transform.position, Vector3.right * direction * rayLength, Color.yellow);
+        // Angle
+        return direction * step;
     }
 
-    float RotateAngleTwoAxis(float step)
+    float RotateAngle2Axis(float step)
     {
+        // Input direction
         Vector3 targetDirection = Vector3.right * x + Vector3.up * y;
-        // Set Direction
-        direction = Vector3.RotateTowards(transform.right, targetDirection, step, 0.0f);
-        return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Smooth direction
+        Vector3 direction = Vector3.RotateTowards(transform.right, targetDirection, step, 0.0f);
+        // Debug
+        if (showDebugRays) {            
+            Debug.DrawRay(transform.position, targetDirection * rayLength, Color.white);
+            Debug.DrawRay(transform.position, direction * rayLength, Color.yellow);
+        }
+        // Angle
+        return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;        
     }
 }

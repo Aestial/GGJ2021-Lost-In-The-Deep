@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class PlayerInputMovement : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public enum MovementType
+    {
+        AddForce,
+        MoveTransform,        
+    }
+    
+    [SerializeField]
+    MovementType moveType = default;
+    [Header("Add Force Parameters")]
     public float thrust = 1.0f;
+    [Header("Move Transform Parameters")]
+    public float speed = 1.0f;
 
     Rigidbody rb;
     float x, y;
@@ -31,11 +41,19 @@ public class PlayerInputMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // MoveTransform();
-        MoveAddForce();
+        switch(moveType)
+        {
+            case MovementType.MoveTransform:
+                MoveTransform();
+                break;
+            case MovementType.AddForce:
+            default:
+                AddForce();
+                break;   
+        }
     }
 
-    void MoveAddForce()
+    void AddForce()
     {
         rb.AddForce(MoveDirection * thrust);
     }
