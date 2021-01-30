@@ -32,9 +32,9 @@ public class PlayerInputTargetPull: MonoBehaviour
     
     [Header("Debug")]
     [SerializeField]
-    bool showDebugRays = false;
+    bool showDebug = false;
     [SerializeField]
-    float failRayLength = 10.0f;
+    float rayLength = 10.0f;
 
     [Header("Debug Inspector")]
     public string state;
@@ -148,7 +148,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         // React with event
         OnStateChanged.Invoke(state);
         // React with debug Rays
-        if (showDebugRays)
+        if (showDebug)
             DrawDebugRays();
     }
     private void DrawDebugRays()
@@ -160,7 +160,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         } else {
             Debug.Log("Did Not Hit");
             Color rayColor = isLoaded ? Color.magenta : Color.red;
-            Debug.DrawRay(transform.position, transform.right * failRayLength, rayColor);
+            Debug.DrawRay(transform.position, transform.right * rayLength, rayColor);
         }
     }
 }
