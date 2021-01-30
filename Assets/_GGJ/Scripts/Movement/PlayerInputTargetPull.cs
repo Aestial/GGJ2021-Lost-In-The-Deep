@@ -110,7 +110,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         {
             loadingTimer -= Time.deltaTime;
             float progress = 1f - loadingTimer / reloadDelay;
-            Debug.Log($"Ray Loading progress: {progress}");
+            // Debug.Log($"Ray Loading progress: {progress}");
             OnReloadingProgress.Invoke(progress);
             isLoaded = false;
         } else {
@@ -121,7 +121,7 @@ public class PlayerInputTargetPull: MonoBehaviour
         {
             shootTimer -= Time.deltaTime;
             float progress = 1f - shootTimer / shootDelay;
-            Debug.Log($"Ray Shoot progress: {progress}");
+            // Debug.Log($"Ray Shoot progress: {progress}");
             OnShootingProgress.Invoke(progress);
         }
     }
@@ -132,10 +132,10 @@ public class PlayerInputTargetPull: MonoBehaviour
         int layerMask = 1 << 8;
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
+        // layerMask = ~layerMask;
 
         // Does the ray intersect any objects excluding the player layer
-        canReach = Physics.Raycast(transform.position, transform.right, out hit, rayReach);        
+        canReach = Physics.Raycast(transform.position, transform.right, out hit, rayReach, layerMask);
         // React with event
         OnReachChanged.Invoke(canReach);
         // React with debug Rays
