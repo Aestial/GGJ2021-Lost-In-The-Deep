@@ -1075,7 +1075,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.15
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1386,7 +1386,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1427,7 +1427,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7c4c24886cb224b43a472781a2e335f7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d0ba72be3de04421b7a20c8eaa7fce5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1797694205}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 12
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -2992,6 +2992,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1456560171, guid: 6d530e97befd24a0984fa04212115489, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3949122590487987722, guid: 6d530e97befd24a0984fa04212115489, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3060,10 +3064,6 @@ PrefabInstance:
       propertyPath: OnReloadingProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 803459871}
-    - target: {fileID: 4183689860852089723, guid: 6d530e97befd24a0984fa04212115489, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d530e97befd24a0984fa04212115489, type: 3}
 --- !u!1001 &4131227876711800659
