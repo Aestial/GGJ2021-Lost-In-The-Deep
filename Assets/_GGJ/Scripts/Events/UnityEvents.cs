@@ -2,6 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[Serializable]
+public class CollisionEvent : UnityEvent<Collision> {}
+[Serializable]
+public class ColliderEvent : UnityEvent<Collider> {}
 [Serializable]
 public class Vector3Event : UnityEvent<Vector3> {}
 [Serializable]
