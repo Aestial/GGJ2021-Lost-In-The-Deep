@@ -75,26 +75,21 @@ public class PlayerInputTargetPull: MonoBehaviour
         }                
     }
 
-    private IEnumerator AttachTarget(Vector3 target) 
-    {
-        if (! isAttached)
-        {
-            yield return new WaitForSeconds(shootDelay);
-            isAttached = true;
-            OnTargetAttached.Invoke(target);
-        }        
-    }
-
     private void DeattachTarget(Vector3 target)
     {
         StopAllCoroutines();
         if (isAttached)
-        {
-            isAttached = false;
-            OnTargetDeattached.Invoke(target);
-            loadingTimer = reloadDelay;
-        }
+            loadingTimer = reloadDelay;        
+        isAttached = false;
+        OnTargetDeattached.Invoke(target);
     }
+
+    private IEnumerator AttachTarget(Vector3 target) 
+    {
+        yield return new WaitForSeconds(shootDelay);
+        isAttached = true;
+        OnTargetAttached.Invoke(target);
+    }    
 
     private void Update() 
     {
@@ -122,11 +117,6 @@ public class PlayerInputTargetPull: MonoBehaviour
 
     private void FixedUpdate() 
     {
-        // ACTUAL ATTACHMENT
-        if (isAttached)
-        {
-            OnKeepAttached.Invoke(anchor);
-        }
         // REACH CALCULATION
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 8; // This would cast rays only against colliders in layer 8. (Level)
@@ -150,6 +140,10 @@ public class PlayerInputTargetPull: MonoBehaviour
         // React with debug Rays
         if (showDebug)
             DrawDebugRays();
+        
+        // ACTUAL ATTACHMENT
+        if (isAttached)
+            OnKeepAttached.Invoke(anchor);
     }
     private void DrawDebugRays()
     {
