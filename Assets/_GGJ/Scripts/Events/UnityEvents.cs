@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 
 [Serializable]
+public class RaycastHitEvent : UnityEvent<RaycastHit> {}
+[Serializable]
 public class CollisionEvent : UnityEvent<Collision> {}
 [Serializable]
 public class ColliderEvent : UnityEvent<Collider> {}

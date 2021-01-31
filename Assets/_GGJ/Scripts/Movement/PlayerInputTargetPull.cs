@@ -16,7 +16,7 @@ public class PlayerInputTargetPull: MonoBehaviour
     [SerializeField]
     private Vector3Event OnTargetShot = default;
     [SerializeField]
-    private Vector3Event OnTargetAttached = default;
+    private RaycastHitEvent OnTargetAttached = default;
     [SerializeField]
     private Vector3Event OnTargetDeattached = default;
     [SerializeField]
@@ -67,9 +67,9 @@ public class PlayerInputTargetPull: MonoBehaviour
     private void ShootAtTarget(RaycastHit hit)
     {        
         if (canReach && isLoaded && !isAttached)
-        {
-            anchor = hit.point;     
-            StartCoroutine(AttachTarget(anchor));            
+        {            
+            StartCoroutine(AttachTarget(hit));
+            anchor = hit.point;
             OnTargetShot.Invoke(anchor);          
             shootTimer = shootDelay;        
         }                
@@ -84,11 +84,11 @@ public class PlayerInputTargetPull: MonoBehaviour
         OnTargetDeattached.Invoke(target);
     }
 
-    private IEnumerator AttachTarget(Vector3 target) 
+    private IEnumerator AttachTarget(RaycastHit hit) 
     {
         yield return new WaitForSeconds(shootDelay);
         isAttached = true;
-        OnTargetAttached.Invoke(target);
+        OnTargetAttached.Invoke(hit);
     }    
 
     private void Update() 
