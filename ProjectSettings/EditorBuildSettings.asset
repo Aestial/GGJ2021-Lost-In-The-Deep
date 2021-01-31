@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_GGJ/Scenes/Controls.unity
-    guid: 8767d54709c0b48fc885ad0a069581fd
+    path: Assets/_GGJ/Scenes/Level0.unity
+    guid: 20b5bafe8b06b438b86079c84a1d7296
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4476fb281b0a242d2a60bd24746bd015, type: 2}

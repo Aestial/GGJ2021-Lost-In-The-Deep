@@ -12,9 +12,8 @@ public class PlayRandomAudioClip : MonoBehaviour
     public void PlayRandom()
     {
         int index = Random.Range(0, clips.Count);
-        Debug.Log(index);
         AudioClip clip = clips[index];
-        Debug.Log(clip);
+        // Debug.Log(clip);
         audio.PlayOneShot(clip);
     }
 
