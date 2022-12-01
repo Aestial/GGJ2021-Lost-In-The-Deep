@@ -7,7 +7,7 @@ public class PlayRandomAudioClip : MonoBehaviour
     [SerializeField]
     List<AudioClip> clips = default;
 
-    AudioSource audio;
+    new AudioSource audio;
 
     public void PlayRandom()
     {

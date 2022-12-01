@@ -3,7 +3,7 @@ using UnityEngine;
 public class RigidbodyAddForce : MonoBehaviour 
 {
     [SerializeField]
-    private Rigidbody rigidbody = default;
+    new private Rigidbody rigidbody = default;
     [SerializeField]
     private float thrust = 50.0f;
     
